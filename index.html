@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=375, initial-scale=1.0" />
+  <title>Ethos Annuities – Mobile</title>
+  <!-- Load closest web-font approximations as @font-face fallbacks -->
+  <!-- Portada (Latinotype slab-serif) → DM Serif Display; Hauss (Ethos sans) → Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Figma brand fonts: declared first so they take priority if installed/available ── */
+    /* Hauss (Grilli Type / Ethos custom sans) → falls back to Inter */
+    /* Portada (Latinotype) → falls back to DM Serif Display */
+
+    /* ── Figma design tokens ─────────────────────────────────────── */
+    :root {
+      /* Colors — exact from Figma */
+      --white:              #ffffff;
+      --dark-cypress:       #05594f;
+      --bright-clover:      #59f8b1;
+      --light-truffle:      #faf9f5;
+      --night-100:          #272727;
+      --night-80:           #5d5d5d;
+      --night-subtle:       #525252;
+      --night-20:           #d4d4d4;
+      --accent-yellow:      #e7fd7f;
+
+      /* Font families — brand names first, web-font fallbacks second */
+      --font-portada:    'Portada', 'DM Serif Display', Georgia, serif;
+      --font-hauss:      'Hauss', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-theinhardt: 'Theinhardt', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      /* Typography scale — exact from Figma text styles */
+      --fs-display:     40px; --lh-display:     48px; --ls-display:    -0.19px;
+      --fs-title-l:     28px; --lh-title-l:     32px; --ls-title-l:    -0.03px;
+      --fs-title-m:     23px; --lh-title-m:     28px;
+      --fs-title-xs:    18px; --lh-title-xs:    26px;
+      --fs-text-l:      19px; --lh-text-l:      24px;
+      --fs-text-m:      16px; --lh-text-m:      20px;
+      --fs-text-s:      13px; --lh-text-s:      18px;
+      --fs-text-s-reg:  13px; --lh-text-s-reg:  16px;
+
+      /* Shadows — exact from Figma */
+      --shadow-xs:   0px 1px 2px 0px rgba(16,24,40,0.05);
+      --shadow-card: 0px 4px 20px 0px rgba(0,0,0,0.06);
+      --shadow-hero: 0px 2px 15px 0px rgba(0,0,0,0.2);
+    }
+
+    /* ── Reset ──────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #e5e5e5;
+      display: flex;
+      justify-content: center;
+      padding: 24px 0 48px;
+      min-height: 100vh;
+      font-family: var(--font-hauss);
+    }
+    img { display: block; }
+    button { cursor: pointer; border: none; outline: none; font-family: inherit; }
+    p { margin: 0; }
+
+    /* ── Mobile frame — 375 px ──────────────────────────────────── */
+    .mobile {
+      width: 375px;
+      background: var(--white);
+      box-shadow: var(--shadow-xs);
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    /* ════════════════════════════════════════
+       NAV BAR
+    ════════════════════════════════════════ */
+    .navbar {
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      height: 68px;
+      width: 375px;
+      flex-shrink: 0;
+    }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .btn-nav {
+      background: var(--bright-clover);
+      color: var(--night-100);
+      font-family: var(--font-hauss);
+      font-size: var(--fs-text-s);
+      font-weight: 500;
+      line-height: var(--lh-text-s);
+      padding: 8px 16px;
+      border-radius: 8px;
+      box-shadow: var(--shadow-xs);
+      min-height: 36px;
+      white-space: nowrap;
+    }
+    .hamburger { display: flex; flex-direction: column; gap: 3px; }
+    .hamburger span { display: block; background: var(--dark-cypress); height: 2.308px; width: 20px; }
+
+    /* ════════════════════════════════════════
+       HERO (top)
+    ════════════════════════════════════════ */
+    .hero {
+      background: linear-gradient(113.9561883822942deg, rgb(4,70,62) 22.767%, rgb(7,132,118) 114.3%);
+      border-radius: 24px;
+      box-shadow: var(--shadow-hero);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 40px;
+      gap: 24px;
+      width: 100%;
+      min-height: 844px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .hero-inner { display: flex; flex-direction: column; gap: 24px; align-items: center; width: 327px; }
+
+    /* trustpilot */
+    .tp-row { display: flex; align-items: flex-end; gap: 4px; justify-content: center; width: 100%; }
+    .tp-star { width: 21px; height: 20px; object-fit: contain; }
+    .tp-text {
+      font-family: var(--font-hauss);
+      font-size: var(--fs-text-m); font-weight: 400; line-height: var(--lh-text-m);
+      color: var(--white); white-space: nowrap;
+    }
+
+    /* headline */
+    .hero-hl-group { display: flex; flex-direction: column; gap: 16px; width: 100%; text-align: center; }
+    .hero-h1 {
+      font-family: 'Portada', 'DM Serif Display', Georgia, serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 48px;
+      letter-spacing: -0.19px;
+      color: #FFF;
+      text-align: center;
+      width: 327px;
+    }
+    .hero-h1 .accent { color: var(--accent-yellow); }
+    .hero-sub {
+      font-family: 'Hauss', 'Inter', -apple-system, sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 20px;
+      color: #FFF;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* CTA buttons */
+    .ctas { width: 327px; }
+    .btn-clover {
+      background: var(--bright-clover); color: var(--night-100);
+      font-family: var(--font-theinhardt);
+      font-size: var(--fs-title-xs); font-weight: 500; line-height: var(--lh-title-xs);
+      font-feature-settings: 'case' 1;
+      padding: 16px 40px; border-radius: 8px; box-shadow: var(--shadow-xs);
+      min-height: 56px; width: 100%; text-align: center; white-space: nowrap;
+    }
+    .btn-dark {
+      background: var(--dark-cypress); color: var(--white);
+      font-family: var(--font-theinhardt);
+      font-size: var(--fs-title-xs); font-weight: 500; line-height: var(--lh-title-xs);
+      font-feature-settings: 'case' 1;
+      padding: 16px 20px; border-radius: 8px; box-shadow: var(--shadow-xs);
+      min-height: 56px; width: 100%; text-align: center; white-space: nowrap;
+    }
+
+    /* ── Hero person image — exact Figma dimensions + transform ── */
+    /* Container: 265×291. Inner wrapper gets rotate(180deg) scaleY(-1) = scaleX(-1) (mirror X).
+       Image: h=104.71%, w=172.41%, offset left=-67.53%, top=-4.71% */
+    .hero-photo-wrap {
+      width: 265px; height: 291px;
+      position: relative; flex-shrink: 0;
+      overflow: hidden;
+    }
+    .hero-photo-inner {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-photo-flip {
+      transform: rotate(180deg) scaleY(-1); /* = mirror horizontally */
+      flex: none;
+      width: 265px; height: 291px;
+      position: relative; overflow: hidden;
+      pointer-events: none;
+    }
+    .hero-photo-flip img {
+      position: absolute;
+      height: 104.71%;
+      width: 172.41%;
+      left: -67.53%;
+      top: -4.71%;
+      max-width: none;
+      display: block;
+    }
+
+    /* ── Award badges ─────────────────────────────────────────── */
+    .wreaths {
+      display: flex; gap: 15px; align-items: center; justify-content: center;
+      width: 349px; flex-shrink: 0;
+    }
+    .badge { display: flex; align-items: center; justify-content: center; height: 101px; }
+    .badge-bi  { gap: 10px; width: 157px; }
+    .badge-fbs { gap: 7px;  width: 163px; }
+    .wreath-l { height: 55.934px; width: 32px; object-fit: contain; }
+    .wreath-r { height: 55.191px; width: 32px; object-fit: contain; transform: scaleX(-1); }
+    .badge-mid { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .badge-bi  .badge-mid { gap: 8px; }
+    .badge-fbs .badge-mid { gap: 7px; width: 85px; }
+    .badge-top { display: flex; flex-direction: column; align-items: center; }
+    .badge-bi  .badge-top { gap: 5px; }
+    .badge-fbs .badge-top { gap: 4px; text-align: center; white-space: nowrap; }
+    .badge-rank {
+      font-family: var(--font-portada);
+      font-size: var(--fs-title-m); font-weight: 600; line-height: var(--lh-title-m);
+      letter-spacing: 1px; color: var(--white); text-align: center;
+    }
+    .badge-cat {
+      font-family: var(--font-hauss);
+      font-size: 10px; font-weight: 500; line-height: 15px;
+      letter-spacing: 1.1px; text-transform: uppercase;
+      color: var(--white); text-align: center; font-feature-settings: 'case' 1;
+    }
+    /* Business Insider logo */
+    .bi-logo { height: 24.444px; width: 70px; object-fit: contain; }
+    /* Forbes Advisor logo — contained within badge-mid */
+    .forbes-logo-wrap {
+      height: 24px; width: 72px;
+      flex-shrink: 0;
+    }
+    .forbes-logo-wrap img {
+      display: block; width: 100%; height: 100%; object-fit: contain;
+    }
+
+    /* ════════════════════════════════════════
+       SECTIONS
+    ════════════════════════════════════════ */
+    .sections { display: flex; flex-direction: column; gap: 80px; width: 100%; }
+    .content-stack { display: flex; flex-direction: column; gap: 60px; align-items: center; width: 100%; }
+
+    .sec-title {
+      font-family: var(--font-portada);
+      font-size: var(--fs-title-l); font-weight: 500; line-height: var(--lh-title-l);
+      letter-spacing: var(--ls-title-l);
+      color: var(--night-100); text-align: center; width: 100%;
+    }
+    .sec-sub {
+      font-family: var(--font-hauss);
+      font-size: var(--fs-text-m); font-weight: 400; line-height: var(--lh-text-m);
+      color: var(--night-subtle); text-align: center; width: 100%;
+    }
+
+    /* ── Why Retirees ───────────────────────────────────────────── */
+    .why { display: flex; flex-direction: column; gap: 32px; align-items: center; width: 335px; }
+    .benefit-list { display: flex; flex-direction: column; gap: 32px; width: 100%; }
+    .benefit-item { display: flex; flex-direction: column; gap: 16px; align-items: center; width: 100%; }
+
+    /* Icon containers — exact Figma sizes, overflow:clip */
+    .icon-wallet {
+      position: relative; width: 60px; height: 60px; overflow: hidden; flex-shrink: 0;
+    }
+    .icon-wallet .icon-inner {
+      position: absolute;
+      top: 1.92%; left: 3.08%; right: 3.08%; bottom: 1.92%; /* inset-[1.92%_3.08%] */
+    }
+    .icon-wallet .icon-inner img {
+      position: absolute;
+      top: -1.75%; left: -1.79%; right: 0; bottom: -1.75%;
+      display: block; max-width: none; width: 103.58%; height: 103.5%;
+    }
+
+    .icon-performance {
+      position: relative; width: 60px; height: 60px; overflow: hidden; flex-shrink: 0;
+    }
+    .icon-performance .layer {
+      position: absolute; left: 0; top: 0; width: 60px; height: 60px; overflow: hidden;
+    }
+    .icon-performance .layer .pad { /* inset-[1.92%] */
+      position: absolute; inset: 1.92%;
+    }
+    .icon-performance .group-main { /* inset-[1.92%] within pad */
+      position: absolute; top: 1.92%; left: 1.92%; right: 1.92%; bottom: 1.92%;
+    }
+    .icon-performance .group-main img {
+      position: absolute; display: block; max-width: none; width: 100%; height: 100%;
+    }
+    .icon-performance .group-dot { /* inset-[73.24%_84.3%_18.66%_9.35%] within pad */
+      position: absolute; top: 73.24%; right: 84.3%; bottom: 18.66%; left: 9.35%;
+    }
+    .icon-performance .group-dot img {
+      position: absolute; display: block; max-width: none; width: 100%; height: 100%;
+    }
+
+    .icon-shield {
+      position: relative; width: 60px; height: 60px; overflow: hidden; flex-shrink: 0;
+    }
+    .icon-shield .icon-inner { /* inset-[0_4.51%] */
+      position: absolute; top: 0; left: 4.51%; right: 4.51%; bottom: 0;
+    }
+    .icon-shield .icon-inner img {
+      position: absolute; display: block; max-width: none; width: 100%; height: 100%;
+    }
+
+    .icon-family {
+      position: relative; width: 60px; height: 60px; overflow: hidden; flex-shrink: 0;
+    }
+    .icon-family .icon-inner { /* inset-[13.74%_1.92%] */
+      position: absolute; top: 13.74%; left: 1.92%; right: 1.92%; bottom: 13.74%;
+    }
+    .icon-family .icon-inner img {
+      position: absolute; display: block; max-width: none; width: 100%; height: 100%;
+    }
+
+    .icon-star {
+      position: relative; width: 60px; height: 60px; overflow: hidden; flex-shrink: 0;
+    }
+    .icon-star .icon-inner { /* inset-[1.92%] */
+      position: absolute; inset: 1.92%;
+    }
+    .icon-star .icon-inner img {
+      position: absolute; display: block; max-width: none; width: 100%; height: 100%;
+    }
+
+    .icon-ribbon {
+      position: relative; width: 60px; height: 60px; overflow: hidden; flex-shrink: 0;
+    }
+    .icon-ribbon .icon-inner { /* inset-[1.92%_13.42%] */
+      position: absolute; top: 1.92%; left: 13.42%; right: 13.42%; bottom: 1.92%;
+    }
+    .icon-ribbon .icon-inner img {
+      position: absolute; display: block; max-width: none; width: 100%; height: 100%;
+    }
+
+    .benefit-text { display: flex; flex-direction: column; gap: 8px; text-align: center; width: 100%; }
+    .benefit-h {
+      font-family: var(--font-hauss);
+      font-size: var(--fs-text-l); font-weight: 700; line-height: var(--lh-text-l);
+      color: var(--night-100); width: 100%;
+    }
+    .benefit-p {
+      font-family: var(--font-hauss);
+      font-size: var(--fs-text-m); font-weight: 400; line-height: var(--lh-text-m);
+      color: var(--night-subtle); width: 100%;
+    }
+
+    /* ── How Annuities Work ─────────────────────────────────────── */
+    .bg-truffle { background: var(--light-truffle); padding: 60px 20px; width: 100%; }
+    .how-inner { display: flex; flex-direction: column; gap: 40px; align-items: center; width: 100%; }
+    .how-cards { display: flex; flex-direction: column; gap: 40px; width: 335px; }
+    .cards-list { display: flex; flex-direction: column; gap: 16px; }
+    .cards-label {
+      font-family: var(--font-hauss);
+      font-size: var(--fs-text-m); font-weight: 500; line-height: var(--lh-text-m);
+      color: var(--night-subtle);
+    }
+    .card { border-radius: 8px; padding: 16px; display: flex; flex-direction: column; }
+    .card.active {
+      background: var(--white);
+      border-left: 2px solid var(--night-100);
+      box-shadow: var(--shadow-card);
+    }
+    .card.dim { border-left: 2px solid var(--night-20); }
+    .card-inner { display: flex; flex-direction: column; gap: 6px; }
+    .card-h {
+      font-family: var(--font-hauss);
+      font-size: var(--fs-text-m); font-weight: 500; line-height: var(--lh-text-m);
+    }
+    .card-h.active { color: var(--night-100); }
+    .card-h.dim    { color: var(--night-80); }
+    .card-p {
+      font-family: var(--font-hauss);
+      font-size: var(--fs-text-s-reg); font-weight: 400; line-height: var(--lh-text-s-reg);
+    }
+    .card-p.active { color: var(--night-subtle); }
+    .card-p.dim    { color: var(--night-80); }
+
+    /* ── Trust section ──────────────────────────────────────────── */
+    .trust { display: flex; flex-direction: column; gap: 40px; align-items: center; width: 100%; }
+    .trust-hdr { display: flex; flex-direction: column; gap: 16px; text-align: center; width: 100%; padding: 0 20px; }
+    .trust-stats { display: flex; flex-direction: column; gap: 32px; align-items: center; width: 100%; }
+    .stat-item { display: flex; flex-direction: column; gap: 16px; align-items: center; width: 270px; }
+
+    /* ── FAQ ─────────────────────────────────────────────────────── */
+    .faq-outer { display: flex; flex-direction: column; gap: 56px; align-items: center; width: 100%; }
+    .faq-bg { background: var(--light-truffle); padding: 60px 20px; width: 100%; }
+    .faq-inner { display: flex; flex-direction: column; gap: 40px; align-items: center; width: 335px; }
+    .faq-list { display: flex; flex-direction: column; width: 335px; }
+    .faq-item { width: 100%; }
+    .faq-item + .faq-item { border-top: 1px solid var(--night-20); }
+    .faq-item input[type="checkbox"] { display: none; }
+    .faq-label {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      padding: 30px 0; cursor: pointer; gap: 12px;
+    }
+    .faq-item:first-child .faq-label { padding-top: 0; }
+    .faq-q {
+      font-family: var(--font-hauss);
+      font-size: 18px; font-weight: 500; line-height: 24px;
+      color: var(--night-100); flex: 1 0 0;
+    }
+    .faq-icon { flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px; }
+    .faq-icon svg { width: 24px; height: 24px; display: block; }
+    .faq-answer { display: none; padding-bottom: 30px; }
+    .faq-answer p {
+      font-family: var(--font-hauss);
+      font-size: 18px; font-weight: 400; line-height: 24px;
+      color: var(--night-80);
+    }
+    .faq-item input:checked ~ .faq-answer { display: block; }
+    .faq-item input:checked ~ .faq-label .faq-icon .plus-v { display: none; }
+
+    /* ── Bottom CTA hero ─────────────────────────────────────────── */
+    .hero-bottom {
+      background: linear-gradient(119.8297201324905deg, rgb(4,70,62) 22.767%, rgb(7,132,118) 114.3%);
+      border-radius: 24px; box-shadow: var(--shadow-hero);
+      display: flex; flex-direction: column; align-items: center;
+      padding-top: 32px; gap: 31px;
+      width: 375px; height: 654px;
+      position: relative; overflow: hidden; flex-shrink: 0;
+    }
+    .hero-bottom-inner {
+      display: flex; flex-direction: column; gap: 24px; align-items: center;
+      width: 327px; position: relative; z-index: 2;
+    }
+    .hero-bottom-text {
+      display: flex; flex-direction: column; gap: 12px; align-items: center;
+      text-align: center; color: var(--white);
+      height: 228px; width: 100%; justify-content: center;
+    }
+    .hero-bottom-h {
+      font-family: var(--font-portada);
+      font-size: var(--fs-display); font-weight: 600; line-height: var(--lh-display);
+      letter-spacing: -0.97px; color: var(--white); width: 327px;
+    }
+    .hero-bottom-sub {
+      font-family: var(--font-hauss);
+      font-size: var(--fs-text-m); font-weight: 400; line-height: var(--lh-text-m);
+      color: var(--white); width: 302px;
+    }
+    /* Bottom image — exact Figma position: left:23px, top from bottom, 364×259 */
+    .hero-bottom-photo {
+      position: absolute; bottom: 0; left: 23px;
+      width: 364px; height: 259px; z-index: 1;
+    }
+    .hero-bottom-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center;
+    }
+  </style>
+</head>
+<body>
+<div class="mobile">
+
+  <!-- ═══════ NAV + HERO ═══════ -->
+  <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+
+    <nav class="navbar">
+      <!-- Ethos Logo — exact Figma vector assets, 86.968×16.456px container -->
+      <div style="position:relative;width:86.968px;height:16.456px;flex-shrink:0;" aria-label="Ethos">
+        <!-- E (Vector1): top=1.87%, right=86.58%, bottom=1.99%, left=0 -->
+        <div style="position:absolute;top:1.87%;right:86.58%;bottom:1.99%;left:0;">
+          <div style="position:absolute;top:-1.75%;left:-2.38%;right:-2.38%;bottom:-1.75%;">
+            <img alt="" style="display:block;max-width:none;width:100%;height:100%;"
+                 src="https://www.figma.com/api/mcp/asset/e9879f6e-e485-40bb-80b9-c45319ab6ba6" />
+          </div>
+        </div>
+        <!-- TH (Vector): top=1.87%, right=65.49%, bottom=1.99%, left=19.35% -->
+        <div style="position:absolute;top:1.87%;right:65.49%;bottom:1.99%;left:19.35%;">
+          <div style="position:absolute;top:-1.75%;left:-2.11%;right:-2.11%;bottom:-1.75%;">
+            <img alt="" style="display:block;max-width:none;width:100%;height:100%;"
+                 src="https://www.figma.com/api/mcp/asset/15b7f02a-2307-468c-b4e9-0932e63bbe43" />
+          </div>
+        </div>
+        <!-- O (Vector2): top=1.87%, right=44.39%, bottom=1.99%, left=40.45% -->
+        <div style="position:absolute;top:1.87%;right:44.39%;bottom:1.99%;left:40.45%;">
+          <div style="position:absolute;top:-1.75%;left:-2.11%;right:-2.11%;bottom:-1.75%;">
+            <img alt="" style="display:block;max-width:none;width:100%;height:100%;"
+                 src="https://www.figma.com/api/mcp/asset/13a8066c-4a82-475c-9c7a-215f553e887f" />
+          </div>
+        </div>
+        <!-- S (Vector3): top=0.43%, right=0, bottom=0.55%, left=84.92% -->
+        <div style="position:absolute;top:0.43%;right:0;bottom:0.55%;left:84.92%;">
+          <div style="position:absolute;top:-1.7%;left:-2.96%;right:-2.12%;bottom:-1.7%;">
+            <img alt="" style="display:block;max-width:none;width:100%;height:100%;"
+                 src="https://www.figma.com/api/mcp/asset/eebc4377-11ad-445d-ad40-b9aa50745f79" />
+          </div>
+        </div>
+        <!-- Leaf mark (Group): top=0, right=19.91%, bottom=0, left=61.17% -->
+        <div style="position:absolute;top:0;right:19.91%;bottom:0;left:61.17%;">
+          <img alt="" style="position:absolute;display:block;max-width:none;width:100%;height:100%;"
+               src="https://www.figma.com/api/mcp/asset/3290d9ee-777e-4eae-b29d-418de98273bd" />
+        </div>
+      </div>
+      <div class="nav-right">
+        <button class="btn-nav">Get Started</button>
+        <div class="hamburger"><span></span><span></span><span></span></div>
+      </div>
+    </nav>
+
+    <!-- Hero section -->
+    <div class="hero">
+      <div class="hero-inner">
+
+        <!-- Trustpilot -->
+        <div class="tp-row">
+          <!-- Trustpilot star — exact Figma Brand logos node 30:50808, 21×20px -->
+          <div style="position:relative;width:21px;height:20px;flex-shrink:0;">
+            <!-- Vector (full star shape): inset 0 0.01% -->
+            <div style="position:absolute;top:0;left:0;right:0.01%;bottom:0;">
+              <img alt="" style="position:absolute;display:block;max-width:none;width:100%;height:100%;"
+                   src="https://www.figma.com/api/mcp/asset/9a563d90-3fd4-4f2d-9153-d12e9dda9020" />
+            </div>
+            <!-- Vector1 (inner accent): inset 61.82% 28.24% 23.6% 50.02% -->
+            <div style="position:absolute;top:61.82%;right:28.24%;bottom:23.6%;left:50.02%;">
+              <img alt="" style="position:absolute;display:block;max-width:none;width:100%;height:100%;"
+                   src="https://www.figma.com/api/mcp/asset/c1c93af4-e009-4208-a7b4-abbe142b914d" />
+            </div>
+          </div>
+          <p class="tp-text"><b>4.8</b> stars with <b>3000+</b> reviews on Trustpilot</p>
+        </div>
+
+        <!-- Headline -->
+        <div class="hero-hl-group">
+          <p class="hero-h1">Turn Your Savings into <span class="accent">Income for Life</span></p>
+          <p class="hero-sub">Compare hundreds of annuity products side by side with a dedicated professional</p>
+        </div>
+
+        <!-- CTA -->
+        <div class="ctas">
+          <button class="btn-clover">Get Started</button>
+        </div>
+      </div>
+
+      <!-- ── Person photo — exact Figma 265×291, mirrored, with oversized image -->
+      <div class="hero-photo-wrap">
+        <div class="hero-photo-inner">
+          <div class="hero-photo-flip">
+            <img src="https://www.figma.com/api/mcp/asset/ac4a227e-0cf2-4b2e-91da-c8f7ffb88153"
+                 alt="Grandfather with grandchild" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Award badges -->
+      <div class="wreaths">
+
+        <!-- Business Insider -->
+        <div class="badge badge-bi">
+          <img class="wreath-l"
+            src="https://www.figma.com/api/mcp/asset/9f318713-f289-4dee-bece-ff41d8c28c4d" alt="" />
+          <div class="badge-mid">
+            <div class="badge-top">
+              <p class="badge-rank">Best</p>
+              <p class="badge-cat">TERM LIFE</p>
+            </div>
+            <img class="bi-logo"
+              src="https://www.figma.com/api/mcp/asset/80e8113e-b3e0-47e6-b539-f491f0eb2674"
+              alt="Business Insider" />
+          </div>
+          <img class="wreath-r"
+            src="https://www.figma.com/api/mcp/asset/06824ea8-e51c-4225-a1fa-eb18dba97f42" alt="" />
+        </div>
+
+        <!-- Forbes Advisor — fixed: logo positioned inside 111×31 with inset offsets -->
+        <div class="badge badge-fbs">
+          <img class="wreath-l"
+            src="https://www.figma.com/api/mcp/asset/9f318713-f289-4dee-bece-ff41d8c28c4d" alt="" />
+          <div class="badge-mid">
+            <div class="badge-top">
+              <p class="badge-rank">Trusted</p>
+              <p class="badge-cat">PROVIDER</p>
+            </div>
+            <div class="forbes-logo-wrap">
+              <img src="https://www.figma.com/api/mcp/asset/4732a323-222e-483a-9c3f-868194be078e"
+                   alt="Forbes Advisor" />
+            </div>
+          </div>
+          <img class="wreath-r"
+            src="https://www.figma.com/api/mcp/asset/06824ea8-e51c-4225-a1fa-eb18dba97f42" alt="" />
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ BODY SECTIONS ═══════ -->
+  <div class="sections">
+    <div class="content-stack">
+
+      <!-- Why Retirees Choose Annuities -->
+      <div class="why">
+        <p class="sec-title">Why Retirees Choose Annuities</p>
+        <div class="benefit-list">
+
+          <!-- Guaranteed income — Wallet/Coin icon -->
+          <div class="benefit-item">
+            <div class="icon-wallet">
+              <div class="icon-inner">
+                <img src="https://www.figma.com/api/mcp/asset/32ce0c2c-6126-4541-a298-2c82f88fca02" alt="" />
+              </div>
+            </div>
+            <div class="benefit-text">
+              <p class="benefit-h">Guaranteed income</p>
+              <p class="benefit-p">Reliable payments for life so you never<br>outlive your savings.</p>
+            </div>
+          </div>
+
+          <!-- Tax deferred growth — Performance icon (2 layered images) -->
+          <div class="benefit-item">
+            <div class="icon-performance">
+              <div class="layer">
+                <div class="pad">
+                  <div class="group-main">
+                    <img src="https://www.figma.com/api/mcp/asset/69a2a5e5-99c2-40a6-9a4b-2aa5677977be" alt="" />
+                  </div>
+                  <div class="group-dot">
+                    <img src="https://www.figma.com/api/mcp/asset/b6586cee-47d5-40e2-9e7c-62c7fb4ad290" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="benefit-text">
+              <p class="benefit-h">Tax deferred growth</p>
+              <p class="benefit-p">Your money compounds tax-free until<br>you withdraw.</p>
+            </div>
+          </div>
+
+          <!-- Market protection — Shield Check icon -->
+          <div class="benefit-item">
+            <div class="icon-shield">
+              <div class="icon-inner">
+                <img src="https://www.figma.com/api/mcp/asset/23cef857-4e6e-4168-a51d-922df929cef0" alt="" />
+              </div>
+            </div>
+            <div class="benefit-text">
+              <p class="benefit-h">Market protection</p>
+              <p class="benefit-p">Certain annuities protect your principal<br>and income from market swings</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- How Annuities Work -->
+      <div class="bg-truffle">
+        <div class="how-inner">
+          <div style="display:flex;flex-direction:column;gap:16px;text-align:center;width:100%;">
+            <p class="sec-title">How Annuities Work</p>
+            <p class="sec-sub">An annuity is a retirement contract that converts your savings into predictable income</p>
+          </div>
+          <div class="how-cards">
+            <div class="cards-list">
+              <p class="cards-label">Examples include:</p>
+              <div class="card active">
+                <div class="card-inner">
+                  <p class="card-h active">Guaranteed annuities</p>
+                  <p class="card-p active">Lock in a guaranteed rate for steady, predictable, tax-deferred growth.</p>
+                </div>
+              </div>
+              <div class="card dim">
+                <div class="card-inner">
+                  <p class="card-h dim">Indexed annuities</p>
+                  <p class="card-p dim">Grow your savings with market-linked returns, while protecting your principal from market losses</p>
+                </div>
+              </div>
+              <div class="card dim">
+                <div class="card-inner">
+                  <p class="card-h dim">Immediate annuities</p>
+                  <p class="card-p dim">Turn a lump sum into income that starts right away. Perfect if you want payments now.</p>
+                </div>
+              </div>
+            </div>
+            <button class="btn-dark">Get Started</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Built on Trust and Experience -->
+      <div class="trust">
+        <div class="trust-hdr">
+          <p class="sec-title">Built on Trust and Experience</p>
+          <p class="sec-sub">We only work with top-rated carriers, so you can count on guaranteed payments for life, backed by some of the strongest insurers in the industry.</p>
+        </div>
+        <div class="trust-stats">
+
+          <!-- Family icon -->
+          <div class="stat-item">
+            <div class="icon-family">
+              <div class="icon-inner">
+                <img src="https://www.figma.com/api/mcp/asset/874ec85c-e1d0-44b5-be1a-dcb12d831a21" alt="" />
+              </div>
+            </div>
+            <div class="benefit-text">
+              <p class="benefit-h">Families protected</p>
+              <p class="benefit-p">Over 500,000 families are protected through Ethos</p>
+            </div>
+          </div>
+
+          <!-- Circle Star icon -->
+          <div class="stat-item">
+            <div class="icon-star">
+              <div class="icon-inner">
+                <img src="https://www.figma.com/api/mcp/asset/3e16316f-1648-4971-bd50-7ac7ac05758b" alt="" />
+              </div>
+            </div>
+            <div class="benefit-text">
+              <p class="benefit-h">Top-rated insurers</p>
+              <p class="benefit-p">Over $150B in life insurance coverage sold through top-rated insurers</p>
+            </div>
+          </div>
+
+          <!-- Ribbon icon -->
+          <div class="stat-item">
+            <div class="icon-ribbon">
+              <div class="icon-inner">
+                <img src="https://www.figma.com/api/mcp/asset/bd70d170-605b-4cdd-b4f2-46479d1d0051" alt="" />
+              </div>
+            </div>
+            <div class="benefit-text">
+              <p class="benefit-h">Top-rated carriers</p>
+              <p class="benefit-p">Ethos only works with top rated carriers</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /content-stack -->
+
+    <!-- FAQ + Bottom CTA -->
+    <div>
+      <div class="faq-outer">
+
+        <div class="faq-bg">
+          <div class="faq-inner">
+            <p class="sec-title" style="min-width:100%;width:min-content;">Your Questions, Answered</p>
+
+            <div class="faq-list">
+
+              <div class="faq-item">
+                <input type="checkbox" id="faq1" checked />
+                <label class="faq-label" for="faq1">
+                  <p class="faq-q">How do meetings with Ethos experts work?</p>
+                  <span class="faq-icon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M5 12H19" stroke="#272727" stroke-width="2" stroke-linecap="round"/>
+                      <path class="plus-v" d="M12 5V19" stroke="#272727" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                </label>
+                <div class="faq-answer">
+                  <p>They're simple and on your schedule. You'll meet one-on-one with a licensed Ethos annuity specialist by phone or video. They'll explain your options in plain language, answer all of your questions, and help you decide if an annuity fits your retirement plan. There's no cost and no obligation.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <input type="checkbox" id="faq2" />
+                <label class="faq-label" for="faq2">
+                  <p class="faq-q">Are there hidden fees to use Ethos?</p>
+                  <span class="faq-icon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M5 12H19" stroke="#272727" stroke-width="2" stroke-linecap="round"/>
+                      <path class="plus-v" d="M12 5V19" stroke="#272727" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                </label>
+                <div class="faq-answer">
+                  <p>No. Ethos is completely free to use. We are compensated by the insurance carriers when you purchase a policy.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <input type="checkbox" id="faq3" />
+                <label class="faq-label" for="faq3">
+                  <p class="faq-q">Are payments really guaranteed?</p>
+                  <span class="faq-icon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M5 12H19" stroke="#272727" stroke-width="2" stroke-linecap="round"/>
+                      <path class="plus-v" d="M12 5V19" stroke="#272727" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                </label>
+                <div class="faq-answer">
+                  <p>Yes. Annuity payments are contractually guaranteed by the insurance company issuing the policy and backed by state guaranty associations.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <input type="checkbox" id="faq4" />
+                <label class="faq-label" for="faq4" style="align-items:center;">
+                  <p class="faq-q" style="white-space:nowrap;flex:unset;">What about taxes?</p>
+                  <span class="faq-icon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M5 12H19" stroke="#272727" stroke-width="2" stroke-linecap="round"/>
+                      <path class="plus-v" d="M12 5V19" stroke="#272727" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                </label>
+                <div class="faq-answer">
+                  <p>Annuities grow tax-deferred — you don't pay taxes on growth until you withdraw. Earnings are taxed as ordinary income at withdrawal.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <input type="checkbox" id="faq5" />
+                <label class="faq-label" for="faq5">
+                  <p class="faq-q">Can I get access to my money if I<br>need it?</p>
+                  <span class="faq-icon" style="margin-top:4px;">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M5 12H19" stroke="#272727" stroke-width="2" stroke-linecap="round"/>
+                      <path class="plus-v" d="M12 5V19" stroke="#272727" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                </label>
+                <div class="faq-answer">
+                  <p>Most annuities allow penalty-free withdrawals of up to 10% per year after the first year. Early withdrawals beyond this may incur surrender charges.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <input type="checkbox" id="faq6" />
+                <label class="faq-label" for="faq6">
+                  <p class="faq-q">Can I fund the annuity with money in my 401k?</p>
+                  <span class="faq-icon">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M5 12H19" stroke="#272727" stroke-width="2" stroke-linecap="round"/>
+                      <path class="plus-v" d="M12 5V19" stroke="#272727" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                </label>
+                <div class="faq-answer">
+                  <p>Yes. You can use a 401(k) rollover or IRA funds to purchase an annuity. Our specialists can help you navigate the process smoothly.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom CTA Hero -->
+        <div class="hero-bottom">
+          <div class="hero-bottom-inner">
+            <div class="hero-bottom-text">
+              <p class="hero-bottom-h">Your Retirement. Your Peace of Mind.</p>
+              <p class="hero-bottom-sub">Secure guaranteed income now and enjoy the confidence of knowing your future is protected.</p>
+            </div>
+            <button class="btn-clover" style="width:327px;">Get Started</button>
+          </div>
+          <div class="hero-bottom-photo">
+            <img src="https://www.figma.com/api/mcp/asset/df39bf90-19c2-4545-8d98-90af6e71544d"
+                 alt="Couple at retirement" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /sections -->
+</div><!-- /mobile -->
+</body>
+</html>
