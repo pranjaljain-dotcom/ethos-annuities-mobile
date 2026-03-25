@@ -4,15 +4,57 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ethos Annuities – Mobile</title>
-  <!-- Load closest web-font approximations as @font-face fallbacks -->
-  <!-- Portada (Latinotype slab-serif) → DM Serif Display; Hauss (Ethos sans) → Inter -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
-    /* ── Figma brand fonts: declared first so they take priority if installed/available ── */
-    /* Hauss (Grilli Type / Ethos custom sans) → falls back to Inter */
-    /* Portada (Latinotype) → falls back to DM Serif Display */
+    /* ── Ethos brand fonts loaded from local project files ── */
+    @font-face {
+      font-family: 'Hauss';
+      src: url('fonts/Hauss-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Hauss';
+      src: url('fonts/Hauss-Medium.ttf') format('truetype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Hauss';
+      src: url('fonts/Hauss-Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Portada';
+      src: url('fonts/Portada-Semibold.ttf') format('truetype');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Theinhardt';
+      src: url('fonts/Theinhardt-Regular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Theinhardt';
+      src: url('fonts/Theinhardt-Medium.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Theinhardt';
+      src: url('fonts/Theinhardt-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
 
     /* ── Figma design tokens ─────────────────────────────────────── */
     :root {
@@ -27,14 +69,14 @@
       --night-20:           #d4d4d4;
       --accent-yellow:      #e7fd7f;
 
-      /* Font families — brand names first, web-font fallbacks second */
-      --font-portada:    'Portada', 'DM Serif Display', Georgia, serif;
-      --font-hauss:      'Hauss', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-theinhardt: 'Theinhardt', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      /* Font families — Ethos brand fonts (local @font-face) */
+      --font-portada:    'Portada', Georgia, serif;
+      --font-hauss:      'Hauss', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-theinhardt: 'Theinhardt', -apple-system, BlinkMacSystemFont, sans-serif;
 
       /* Typography scale — exact from Figma text styles */
       --fs-display:     40px; --lh-display:     48px; --ls-display:    -0.19px;
-      --fs-title-l:     28px; --lh-title-l:     32px; --ls-title-l:    -0.03px;
+      --fs-title-l:     32px; --lh-title-l:     38px; --ls-title-l:    -0.03px;
       --fs-title-m:     23px; --lh-title-m:     28px;
       --fs-title-xs:    18px; --lh-title-xs:    26px;
       --fs-text-l:      19px; --lh-text-l:      24px;
@@ -170,10 +212,10 @@
     /* headline */
     .hero-hl-group { display: flex; flex-direction: column; gap: 16px; width: 100%; text-align: center; }
     .hero-h1 {
-      font-family: 'Portada', 'DM Serif Display', Georgia, serif;
+      font-family: var(--font-portada);
       font-size: 40px;
       font-style: normal;
-      font-weight: 500;
+      font-weight: 600;
       line-height: 48px;
       letter-spacing: -0.19px;
       color: #FFF;
@@ -287,7 +329,7 @@
 
     .sec-title {
       font-family: var(--font-portada);
-      font-size: var(--fs-title-l); font-weight: 500; line-height: var(--lh-title-l);
+      font-size: var(--fs-title-l); font-weight: 600; line-height: var(--lh-title-l);
       letter-spacing: var(--ls-title-l);
       color: var(--night-100); text-align: center; width: 100%;
     }
