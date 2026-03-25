@@ -182,7 +182,7 @@
     }
     .desktop-links a:hover { color: var(--dark-cypress); }
     .nav-icons { display: none; gap: 20px; align-items: center; color: var(--night-100); cursor: pointer; }
-    .desktop-only { display: none; }
+    .desktop-only { display: none !important; }
 
     /* ════════════════════════════════════════
        HERO (top)
@@ -547,17 +547,6 @@
       object-fit: cover; object-position: top center;
     }
 
-    /* How Annuities right image (desktop only) */
-    .how-image-inner {
-      position: relative; width: 425px; height: 523px; overflow: hidden; border-radius: 16px;
-    }
-    .how-image-inner img {
-      position: absolute;
-      height: 120.85%; width: 223.21%;
-      left: -85.83%; top: -20.85%;
-      max-width: none;
-    }
-
     /* ══════════════════════════════════════════
        RESPONSIVE — DESKTOP (≥ 1024px)
        Based on Figma node 72:5815 (1440px canvas)
@@ -579,7 +568,18 @@
       .btn-nav { display: none; }
 
       /* ── Desktop-only elements ── */
-      .desktop-only { display: flex; }
+      .desktop-only { display: flex !important; }
+
+      /* How Annuities right image */
+      .how-image-inner {
+        position: relative; width: 425px; height: 523px; overflow: hidden; border-radius: 16px;
+      }
+      .how-image-inner img {
+        position: absolute;
+        height: 120.85%; width: 223.21%;
+        left: -85.83%; top: -20.85%;
+        max-width: none;
+      }
 
       /* ── Page wrapper ── */
       .mobile { padding: 0 60px; gap: 80px; }
