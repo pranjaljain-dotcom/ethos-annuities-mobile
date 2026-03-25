@@ -553,7 +553,7 @@
     ══════════════════════════════════════════ */
     @media (min-width: 1024px) {
       /* ── Navbar: logo left · links left-aligned after logo · icons far right ── */
-      .navbar { padding: 16px 60px; position: static; justify-content: flex-start; gap: 0; }
+      .navbar { padding: 16px 60px; justify-content: flex-start; gap: 0; }
       .desktop-links {
         display: flex; gap: 28px; align-items: center;
         position: static; transform: none;
@@ -829,20 +829,38 @@
             src="https://www.figma.com/api/mcp/asset/06824ea8-e51c-4225-a1fa-eb18dba97f42" alt="" />
         </div>
 
-        <!-- #1 online Estate Planning (desktop only) -->
+        <!-- #1 online Estate Planning (desktop only) — Figma node 72:5934 -->
         <div class="badge badge-ep desktop-only">
-          <img class="wreath-l"
-            src="https://www.figma.com/api/mcp/asset/9f318713-f289-4dee-bece-ff41d8c28c4d" alt="" />
-          <div class="badge-mid">
-            <div class="badge-top">
-              <p class="badge-rank">#1 online</p>
-              <p class="badge-cat">ESTATE PLANNING</p>
-            </div>
-            <img src="https://www.figma.com/api/mcp/asset/a58dffa8-f6d7-4b7c-8d74-5d819177ecfd"
-                 alt="Estate Planning" style="width:32px;height:auto;object-fit:contain;filter:brightness(0) invert(1);" />
+          <!-- Left wreath -->
+          <div style="height:55.934px;position:relative;flex-shrink:0;width:32px;">
+            <img alt="" style="position:absolute;display:block;max-width:none;width:100%;height:100%;"
+                 src="https://www.figma.com/api/mcp/asset/36673260-87ed-4c4a-b6f7-56c3b7d1517c" />
           </div>
-          <img class="wreath-r"
-            src="https://www.figma.com/api/mcp/asset/06824ea8-e51c-4225-a1fa-eb18dba97f42" alt="" />
+          <!-- Center content -->
+          <div style="display:flex;flex-direction:column;gap:7px;align-items:center;justify-content:center;position:relative;flex-shrink:0;">
+            <div style="display:flex;flex-direction:column;gap:5px;align-items:center;position:relative;flex-shrink:0;">
+              <div style="height:26px;position:relative;flex-shrink:0;width:73px;">
+                <p style="position:absolute;left:50%;transform:translateX(-50%);font-family:'Portada','DM Serif Display',Georgia,serif;font-size:23px;font-weight:600;line-height:28px;letter-spacing:1px;color:#fff;text-align:center;top:-2.25px;white-space:nowrap;">#1 online</p>
+              </div>
+              <p style="font-family:'Hauss','Inter',sans-serif;font-size:10px;font-weight:500;line-height:1.5;letter-spacing:1.1px;text-transform:uppercase;color:#fff;text-align:center;white-space:nowrap;position:relative;flex-shrink:0;">ESTATE PLANNING</p>
+            </div>
+            <!-- Star icon -->
+            <div style="overflow:hidden;position:relative;flex-shrink:0;width:24.5px;height:24.5px;">
+              <div style="position:absolute;inset:6.25% 16.67%;">
+                <img alt="" style="position:absolute;display:block;max-width:none;width:100%;height:100%;"
+                     src="https://www.figma.com/api/mcp/asset/f9b42b17-b8c5-4ee0-86ae-2492b30c110e" />
+              </div>
+            </div>
+          </div>
+          <!-- Right wreath (mirrored) -->
+          <div style="display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0;">
+            <div style="transform:rotate(180deg) scaleY(-1);flex:none;">
+              <div style="height:55.191px;position:relative;width:32px;">
+                <img alt="" style="position:absolute;display:block;max-width:none;width:100%;height:100%;"
+                     src="https://www.figma.com/api/mcp/asset/38e2641a-bc33-4449-8076-1790b73be764" />
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Forbes Advisor — fixed: logo positioned inside 111×31 with inset offsets -->
