@@ -553,7 +553,7 @@
     ══════════════════════════════════════════ */
     @media (min-width: 1024px) {
       /* ── Navbar: logo left · links left-aligned after logo · icons far right ── */
-      .navbar { padding: 16px 60px; justify-content: flex-start; gap: 0; }
+      .navbar { padding: 16px 60px; justify-content: flex-start; gap: 0; background: transparent; }
       .desktop-links {
         display: flex; gap: 28px; align-items: center;
         position: static; transform: none;
@@ -583,7 +583,9 @@
 
       /* ── Page wrapper ── */
       .mobile { padding: 0 60px; gap: 80px; }
-      .hero-wrapper { margin-top: -80px; } /* compensate for desktop gap:80px */
+      /* Hide spacer so green hero floats behind the fixed transparent nav */
+      .nav-spacer { display: none; }
+      .hero-wrapper { margin-top: 0 !important; }
       .sections { gap: 100px; }
       .content-stack { gap: 80px; }
 
@@ -593,7 +595,7 @@
         grid-template-columns: 55% 45%;
         grid-template-rows: 1fr auto;
         align-items: start;
-        padding: 60px 60px 0 60px;
+        padding: 80px 60px 0 60px;
         min-height: 602px;
         gap: 0;
       }
