@@ -81,8 +81,10 @@
       background: rgba(255, 255, 255, 0.72);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 100;
       display: flex;
       align-items: center;
@@ -90,8 +92,11 @@
       padding: 16px;
       height: 68px;
       width: 100%;
+      max-width: 480px;
       flex-shrink: 0;
     }
+    /* Spacer so fixed nav doesn't overlap content */
+    .nav-spacer { height: 68px; flex-shrink: 0; }
     .nav-right { display: flex; align-items: center; gap: 16px; }
     .btn-nav {
       background: var(--bright-clover);
@@ -473,10 +478,8 @@
 <body>
 <div class="mobile">
 
-  <!-- ═══════ NAV + HERO ═══════ -->
-  <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
-
-    <nav class="navbar">
+  <!-- ═══════ NAV (sticky, direct child of .mobile) ═══════ -->
+  <nav class="navbar">
       <!-- Ethos Logo — exact Figma vector assets, 86.968×16.456px container -->
       <div style="position:relative;width:86.968px;height:16.456px;flex-shrink:0;" aria-label="Ethos">
         <!-- E (Vector1): top=1.87%, right=86.58%, bottom=1.99%, left=0 -->
@@ -517,9 +520,11 @@
         <button class="btn-nav">Get Started</button>
         <div class="hamburger"><span></span><span></span><span></span></div>
       </div>
-    </nav>
+  </nav>
+  <div class="nav-spacer"></div>
 
-    <!-- Hero section -->
+  <!-- ═══════ HERO ═══════ -->
+  <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;margin-top:-48px;">
     <div class="hero">
       <div class="hero-inner">
 
